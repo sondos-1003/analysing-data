@@ -1,0 +1,51 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+pj= pd.read_csv("C:/Users/dell/Desktop/WhatsgoodlyData-10.csv")
+pj.head()
+pj.describe()
+pj[pj['Answer'].isin(['Linkedin','Snapchat'])]
+//
+sns.catplot(data=pj, x="Segment Type", y="Count", hue="Segment Type" ,kind="point")
+//
+import seaborn as sns
+corr = pj.corr()
+plt.figure(figsize=(12,12))
+a = sns.heatmap(corr, annot=False, fmt='g')
+//
+pj.shape
+pj.isnull()
+pj.isnull().sum()
+pj['Segment Type'].value_counts()
+pj['Answer'].value_counts()
+pj['Segment Description'].value_counts()
+pj[pj['Segment Type'].isin(['Web','Mobile'])]
+pj[(pj['Count']>5000)]
+pj['Percentage']=pj['Percentage'].apply(lambda x:x*100)
+//
+pj[['Percentage','Count']].hist(figsize=(7,8),bins=6,color='g')
+plt.tight_layout()
+plt.show()
+//
+import seaborn as sns
+corrpj = pj.corr()
+plt.figure(figsize=(12,8))
+a = sns.heatmap(corrpj, annot=True, fmt='.2g')
+//
+sns.catplot(data=pj, x="Percentage", y="Count", hue="Percentage" ,kind="point")
+//
+pj['Count'].dtype
+//
+pj['Answer'].dtype
+//
+pj['Segment Type'].unique()
+//
+group = pj[['Count','Percentage']]
+//
+group = group.groupby(['Count'],as_index=False).mean()
+group
+//
+sns.catplot(data=pj, x="Segment Type", y="Percentage", hue="Segment Type" ,kind="point")
+//
+list(pj.columns)
